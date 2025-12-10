@@ -23,8 +23,8 @@ export default function TaskCard({ task, onEdit, onDelete, onToggleComplete }) {
     <div
       className={`p-5 rounded-lg border transition-all ${
         task.completed
-          ? "bg-muted/50 border-border opacity-60"
-          : "bg-card border-border hover:border-primary/50 hover:shadow-md"
+          ? "glass opacity-60"
+          : "glass hover:border-primary/50 hover:shadow-md"
       }`}
     >
       <div className="flex items-start gap-4">
@@ -60,14 +60,14 @@ export default function TaskCard({ task, onEdit, onDelete, onToggleComplete }) {
         <div className="flex gap-2">
           <button
             onClick={() => onEdit(task)}
-            className="p-2 hover:bg-muted rounded-lg transition-colors text-foreground"
+            className="interactive-soft p-2 hover:bg-muted rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             title="Edit task"
           >
             <Edit2 size={18} />
           </button>
           <button
             onClick={() => onDelete(task.id)}
-            className="p-2 hover:bg-red-100 dark:hover:bg-red-900 rounded-lg transition-colors text-destructive"
+            className="interactive-soft p-2 hover:bg-red-100 dark:hover:bg-red-900 rounded-lg text-destructive focus:outline-none focus:ring-2 focus:ring-destructive"
             title="Delete task"
           >
             <Trash2 size={18} />

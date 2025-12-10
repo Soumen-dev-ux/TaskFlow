@@ -25,7 +25,7 @@ export default function EditModal({ task, onSave, onClose }) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-      <div className="bg-card border border-border rounded-xl shadow-xl max-w-md w-full p-6">
+      <div className="glass rounded-xl max-w-md w-full p-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold text-foreground">Edit Task</h2>
           <button onClick={onClose} className="p-2 hover:bg-muted rounded-lg transition-colors">
@@ -86,14 +86,14 @@ export default function EditModal({ task, onSave, onClose }) {
           <div className="flex gap-3 pt-4">
             <button
               type="submit"
-              className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold"
+              className="interactive flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 font-semibold focus:outline-none focus:ring-2 focus:ring-primary"
             >
               Save Changes
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 border border-input rounded-lg hover:bg-muted transition-colors font-semibold text-foreground"
+              className="interactive flex-1 px-4 py-2 border border-input rounded-lg hover:bg-muted font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             >
               Cancel
             </button>

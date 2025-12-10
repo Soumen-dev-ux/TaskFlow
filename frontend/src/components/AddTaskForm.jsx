@@ -33,7 +33,7 @@ export default function AddTaskForm({ onAdd, onCancel }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-card border border-border rounded-xl p-6 shadow-lg space-y-4">
+    <form onSubmit={handleSubmit} className="glass rounded-xl p-6 space-y-4">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-foreground">Create New Task</h2>
         <button type="button" onClick={onCancel} className="p-2 hover:bg-muted rounded-lg transition-colors">
@@ -66,7 +66,7 @@ export default function AddTaskForm({ onAdd, onCancel }) {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-foreground mb-2">Priority</label>
           <select
@@ -96,14 +96,14 @@ export default function AddTaskForm({ onAdd, onCancel }) {
       <div className="flex gap-3 pt-4">
         <button
           type="submit"
-          className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold"
+          className="interactive flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 font-semibold focus:outline-none focus:ring-2 focus:ring-primary"
         >
           Create Task
         </button>
         <button
           type="button"
           onClick={onCancel}
-          className="flex-1 px-4 py-2 border border-input rounded-lg hover:bg-muted transition-colors font-semibold text-foreground"
+          className="interactive flex-1 px-4 py-2 border border-input rounded-lg hover:bg-muted font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
         >
           Cancel
         </button>
