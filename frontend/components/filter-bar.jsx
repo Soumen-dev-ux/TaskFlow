@@ -11,7 +11,7 @@ export default function FilterBar({ filter, setFilter, sort, setSort, taskCount 
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-3 flex-1">
           <span className="text-sm font-semibold text-muted-foreground">Filter by:</span>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {["all", "pending", "completed"].map((f) => (
               <Button
                 key={f}

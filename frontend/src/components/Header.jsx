@@ -6,14 +6,14 @@ import ThemeToggle from "./ThemeToggle.jsx"
 export default function Header({ onAddTask }) {
   return (
     <header className="mb-10">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent mb-2">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="text-center sm:text-left">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text mb-2">
             TaskFlow
           </h1>
           <p className="text-muted-foreground">Organize your tasks and boost your productivity</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-end">
           <ThemeToggle />
           <button
             onClick={onAddTask}

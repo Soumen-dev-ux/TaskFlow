@@ -1,19 +1,32 @@
-import TaskCard from "./TaskCard.jsx"
+import TaskCard from "./TaskCard";
 
-export default function TaskList({ tasks, onEdit, onDelete, onToggleComplete }) {
-  if (tasks.length === 0) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-muted-foreground text-lg">No tasks match your filter. Create one to get started!</p>
-      </div>
-    )
+function TaskList({ filter, sort, tasks }) {
+
+  // Filter logic
+  let filteredTasks = tasks;
+  if (filter === "pending") filteredTasks = tasks.filter(t => !t.completed);
+  if (filter === "completed") filteredTasks = tasks.filter(t => t.completed);
+
+  // Sort logic
+  if (sort === "priority") {
+    filteredTasks = filteredTasks.sort(
+      (a, b) => ["low", "medium", "high"].indexOf(a.priority) -
+                ["low", "medium", "high"].indexOf(b.priority)
+    );
+  }
+  if (sort === "dueDate") {
+    filteredTasks = filteredTasks.sort(
+      (a, b) => new Date(a.dueDate) - new Date(b.dueDate)
+    );
   }
 
   return (
-    <div className="space-y-3">
-      {tasks.map((task) => (
-        <TaskCard key={task.id} task={task} onEdit={onEdit} onDelete={onDelete} onToggleComplete={onToggleComplete} />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      {filteredTasks.map(task => (
+        <TaskCard key={task._id} task={task} />
       ))}
     </div>
-  )
+  );
 }
+
+export default TaskList;
