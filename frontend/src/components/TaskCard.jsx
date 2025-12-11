@@ -1,22 +1,22 @@
 import { deleteTask, updateTask, toggleComplete } from "../api/tasksApi";
 
-function TaskCard({ task, refresh }) {
+function TaskCard({ task, onTaskChanged }) {
 
   const handleComplete = async () => {
     await toggleComplete(task._id, !task.completed);
-    refresh();
+    onTaskChanged && onTaskChanged();
   };
 
   const handleDelete = async () => {
     await deleteTask(task._id);
-    refresh();
+    onTaskChanged && onTaskChanged();
   };
 
   const handleEdit = async () => {
     const newTitle = prompt("Edit title:", task.title);
     if (newTitle) {
       await updateTask(task._id, { title: newTitle });
-      refresh();
+      onTaskChanged && onTaskChanged();
     }
   };
 

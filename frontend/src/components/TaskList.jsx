@@ -1,6 +1,6 @@
 import TaskCard from "./TaskCard";
 
-function TaskList({ filter, sort, tasks }) {
+function TaskList({ filter, sort, tasks, onTaskChanged }) {
 
   // Filter logic
   let filteredTasks = tasks;
@@ -23,7 +23,7 @@ function TaskList({ filter, sort, tasks }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       {filteredTasks.map(task => (
-        <TaskCard key={task._id} task={task} />
+        <TaskCard key={task._id} task={task} onTaskChanged={onTaskChanged} />
       ))}
     </div>
   );

@@ -1,26 +1,40 @@
-import { useState } from "react";
-import AddTaskForm from "../components/AddTaskForm";
-import TaskList from "../components/TaskList";
-import FilterBar from "../components/FilterBar";
-
-function Home() {
-  const [filter, setFilter] = useState("all");
-  const [sort, setSort] = useState("");
-
+function FilterBar({ setFilter, setSort }) {
   return (
-    <div className="container mx-auto px-4">
-      <h1>Task Manager</h1>
-
-      {/* Add Task Form */}
-      <AddTaskForm refresh={() => window.location.reload()} />
-
-      {/* Filters */}
-      <FilterBar setFilter={setFilter} setSort={setSort} />
-
-      {/* Task List */}
-      <TaskList filter={filter} sort={sort} />
+    <div className="flex flex-wrap items-center gap-3 mb-6">
+      <div className="flex flex-wrap gap-2">
+        <button
+          className="px-3 py-1 rounded-md bg-accent text-accent-foreground hover:bg-accent/90"
+          onClick={() => setFilter("all")}
+        >
+          All
+        </button>
+        <button
+          className="px-3 py-1 rounded-md bg-accent text-accent-foreground hover:bg-accent/90"
+          onClick={() => setFilter("pending")}
+        >
+          Pending
+        </button>
+        <button
+          className="px-3 py-1 rounded-md bg-accent text-accent-foreground hover:bg-accent/90"
+          onClick={() => setFilter("completed")}
+        >
+          Completed
+        </button>
+      </div>
+      <div className="flex items-center gap-2">
+        <label className="text-sm text-muted-foreground">Sort</label>
+        <select
+          className="p-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+          onChange={(e) => setSort(e.target.value)}
+          defaultValue=""
+        >
+          <option value="">None</option>
+          <option value="priority">Priority</option>
+          <option value="dueDate">Due Date</option>
+        </select>
+      </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default FilterBar;

@@ -1,19 +1,28 @@
 import { useState } from "react";
 import { createTask } from "../api/tasksApi";
 
-function AddTaskForm({ onTaskAdded }) {
+function AddTaskForm({ onTaskAdded, onCancel }) {
   const [form, setForm] = useState({
     title: "",
     description: "",
     priority: "medium",
     dueDate: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createTask(form);
-    onTaskAdded(); // Notify parent to reload tasks
-    setForm({ title: "", description: "", priority: "medium", dueDate: "" });
+    if (!form.title.trim()) return;
+    setLoading(true);
+    try {
+      await createTask(form);
+      onTaskAdded && onTaskAdded();
+      setForm({ title: "", description: "", priority: "medium", dueDate: "" });
+    } catch {
+      alert("Failed to add task. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -52,7 +61,14 @@ function AddTaskForm({ onTaskAdded }) {
         onChange={(e) => setForm({ ...form, dueDate: e.target.value })}
       />
 
-      <button type="submit" className="bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/90">Add Task</button>
+      <div className="flex gap-3">
+        <button type="submit" disabled={loading} className="bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/90 disabled:opacity-60 disabled:cursor-not-allowed">
+          {loading ? "Adding..." : "Add Task"}
+        </button>
+        {onCancel && (
+          <button type="button" onClick={onCancel} className="border border-input p-2 rounded-md hover:bg-muted">Cancel</button>
+        )}
+      </div>
     </form>
     </div>
   );
